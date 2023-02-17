@@ -1,36 +1,19 @@
-const express = require("express");
-const bodyParser = require('body-parser');
-const mysql = require("mysql");
+import express from "express";
 
-require("dotenv").config();
+//env configuration
+import dotenv from "dotenv";
+dotenv.config();
+
+//routes
+import AuthRouter from "./routes/auth.js";
 
 const app = express();
 
 app.use(express.json())
+
 app.use(express.urlencoded({ extended: true }))
   
-//   app.use("/", require("./routes"));
-
-const db = mysql.createConnection({
-    host:"localhost",
-    user:"root",
-    password:"",
-    database:"auto-choice"
-})
-
-db.connect((err)=>{
-    if(err) throw err;
-    console.log("Database connection successful")
-});
-
-app.get('/cat',(req,res)=>{
-    let sql = 'SELECT * from garage';
-    db.query(sql,(err,result)=>{
-        if(err) throw err;
-        console.log(result);
-        res.send(result);
-    })
-})
+app.use("/api/auth", AuthRouter);
 
 app.listen(process.env.PORT, () => {
     console.log("Server is running on", process.env.PORT);
