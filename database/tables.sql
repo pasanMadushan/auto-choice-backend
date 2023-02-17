@@ -3,7 +3,7 @@ CREATE TABLE `User` (
   `user_name` varchar(50),
   `first_name` varchar(50),
   `last_name` varchar(50),
-  `password` varchar(50),
+  `password` varchar(255),
   `user_type` varchar(10),
   PRIMARY KEY (`user_id`)
 );
