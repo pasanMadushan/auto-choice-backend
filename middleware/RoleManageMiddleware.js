@@ -17,18 +17,19 @@ export const hasRole = (userType) => {
                 console.log('Role: No id', req.path);
                 return;
             }
-            const q = "SELECT user_type FROM User where user_id = ?";
-            let user_type = '';
+            const q = "SELECT * FROM User where user_id = ?";
+            let user = '';
             db.query(q,id, (error, result) => {
                 if (!!error) {
                     res.sendStatus(403);
                     console.log('Role: No email', req.path);
                     return;
                 }
-                user_type = result[0]?.user_type;
+                user = result[0];
             })
 
-            if (user_type === userType) {
+            if (user.user_type === userType) {
+                req.user = user;
                 next();
             } else {
                 res.sendStatus(403);
