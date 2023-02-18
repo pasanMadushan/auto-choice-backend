@@ -49,5 +49,6 @@ export const loginAction = (req,res) =>{
 }
 
 export const testingAction = (req,res) =>{
+    console.log('customer id ==', req.user.user_id);
     res.json({success: 'dfsfdsfs'});
 }
