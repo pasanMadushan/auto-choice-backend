@@ -10,7 +10,7 @@ export const hasRole = (userTypes) => {
                 console.log('Role: No auth', req.path);
                 return;
             }
-            const token = req.headers.authorization.split('Bearer ')[1];
+            const token = req.headers.authorization;
             const { id } = jwt.verify(token, process.env.TOKEN_SECRET);
             if (!id) {
                 res.sendStatus(403);
