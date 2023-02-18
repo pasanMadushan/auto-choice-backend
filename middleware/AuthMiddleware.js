@@ -7,7 +7,7 @@ export const isAuthenticated = async (req, res, next) => {
             res.sendStatus(401);
             return;
         }
-        const token = req.headers.authorization.split('Bearer')[1];
+        const token = req.headers.authorization;
         let jwtInfo;
         try {
             jwtInfo = jwt.verify(token, process.env.TOKEN_SECRET);
