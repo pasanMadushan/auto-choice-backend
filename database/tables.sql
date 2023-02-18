@@ -66,6 +66,6 @@ CREATE TABLE `Estimation` (
   `garage_id` varchar(50),
   PRIMARY KEY (`id`),
   FOREIGN KEY(`claim_id`) references Claim(`claim_id`),
-  FOREIGN KEY(`claim_id`) references User(`user_id`)
+  FOREIGN KEY(`garage_id`) references User(`user_id`)
 );
 
