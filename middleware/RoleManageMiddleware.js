@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import { db } from '../db.js';
 import jwt from "jsonwebtoken";
 dotenv.config();
-export const hasRole = (userType) => {
+export const hasRole = (userTypes) => {
     return async (req, res, next)=> {
         try {
             if (!req.headers.authorization) {
@@ -27,8 +27,7 @@ export const hasRole = (userType) => {
                 }
                 user = result[0];
             })
-
-            if (user.user_type === userType) {
+            if (userTypes.includes(user.user_type)) {
                 req.user = user;
                 next();
             } else {

@@ -8,6 +8,6 @@ const router = express.Router();
 
 router.post("/login", loginAction);
 router.post("/register",registerAction);
-router.post('/test', isAuthenticated, hasRole('Customer'), testingAction);
+router.post('/test', isAuthenticated, hasRole(['customer']), testingAction);
 
 export default router;
