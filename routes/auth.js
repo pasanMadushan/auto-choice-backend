@@ -7,7 +7,8 @@ import { hasRole } from "../middleware/RoleManageMiddleware.js";
 const router = express.Router();
 
 router.post("/login", loginAction);
-router.post("/register", isAuthenticated, hasRole(['customer']), registerAction);
+router.post("/register", isAuthenticated, hasRole(['agent']), registerAction);
+// router.post("/register", registerAction);
 router.post("/test", isAuthenticated, hasRole(['customer']), testingAction);
 
 export default router;
