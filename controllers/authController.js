@@ -35,12 +35,13 @@ export const loginAction = (req,res) =>{
 
                 res.status(200);
                 res.set("Content-Type", "application/json");
-                res.json({ success: true, data: {...data, jwt:token} });
+                res.json({ success: true, data: {...data, jwt:token}, message: 'Successfully logged!' });
         }
 
         )
         .catch((err) => {
             res.json({
+                success: false,
                 message: err.message,
             });
             res.status(400);

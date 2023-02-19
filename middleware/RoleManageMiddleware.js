@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 dotenv.config();
 export const hasRole = (userTypes) => {
     return async (req, res, next)=> {
+        console.log('is role mangement called');
         try {
             if (!req.headers.authorization) {
                 res.sendStatus(401);
@@ -35,6 +36,7 @@ export const hasRole = (userTypes) => {
 
             if (userTypes.includes(user.user_type)) {
                 req.user = user;
+                console.log('role management success');
                 next();
             } else {
                 res.sendStatus(403);

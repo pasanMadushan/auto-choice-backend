@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post('/add-claim', isAuthenticated, hasRole(['customer']), addClaimAction);
 // router.post('/add-claim', addClaimAction);
-router.get('/get-claim-details', isAuthenticated, hasRole(['customer', 'garage']), getClaimDetailsAction);
+router.post('/get-claim-details', isAuthenticated, hasRole(['customer', 'garage', 'agent']), getClaimDetailsAction);
 // router.get('/get-all-claim-details', isAuthenticated, hasRole(['customer']), getAllClaimDetailsAction);
 router.get('/get-all-vehicles', isAuthenticated, hasRole(['customer']), getAllVehiclesAction);
 // router.get('/get-all-vehicles', getAllVehiclesAction);
