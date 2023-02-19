@@ -19,14 +19,20 @@ export const hasRole = (userTypes) => {
             }
             const q = "SELECT * FROM User where user_id = ?";
             let user = '';
-            db.query(q,id, (error, result) => {
-                if (!!error) {
-                    res.sendStatus(403);
-                    console.log('Role: No email', req.path);
-                    return;
-                }
-                user = result[0];
+            let results = await new Promise((resolve, reject) => {
+                db.query(q,id, (error, result) => {
+                    if (error) {
+                        res.sendStatus(403);
+                        console.log('Role: No email', req.path);
+                        reject(error)
+                        return;
+                    } else {
+                        resolve(result);
+                    }
+                })
             })
+            user = results[0];
+
             if (userTypes.includes(user.user_type)) {
                 req.user = user;
                 next();
