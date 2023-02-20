@@ -15,7 +15,6 @@ export const registerVehicleAction = (req,res) =>{
         });
 }
 
-
 export const validateClaimAction = (req,res) =>{
     let { claimId, comment, approve } = req.body
     validateClaim(claimId, comment, approve)

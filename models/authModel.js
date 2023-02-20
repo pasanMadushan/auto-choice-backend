@@ -30,13 +30,12 @@ export const login = (userName, password) => {
 
 export const register = (agentId, userName, firstName, lastName, NIC, licenseNumber, address, mobileNumber, residenceNumber,image, password, userType ) => {
     return new Promise((resolve, reject) => {
-
+        console.log('dsdsds', userName, firstName, lastName, NIC, licenseNumber, address, mobileNumber, residenceNumber);
         const saltRounds = 10;
         let hashPassword = bcrypt.hashSync(password, saltRounds);
         const q = "INSERT INTO User (user_id, user_name, first_name, last_name, password, user_type) VALUES (?,?,?,?,?,?);";
         let uuidv4 = uuid();
         db.query(q, [uuidv4, userName, firstName, lastName, hashPassword, userType ], (error, result) => {
-            
             if (!error) {
                 const q2 = "INSERT INTO Customer (user_id, national_id, license_number, address, mobile_number, residence_number, image) VALUES (?,?,?,?,?,?,?);";
                 db.query(q2, [uuidv4, NIC, licenseNumber, address, mobileNumber, residenceNumber,image ],(error,result)=>{

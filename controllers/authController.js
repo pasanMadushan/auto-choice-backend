@@ -3,7 +3,6 @@ import  Jwt  from 'jsonwebtoken';
 
 
 export const registerAction = (req,res) =>{
-
     const agentId = req.user.user_id;
     // const agentId = "bfef95d3-4635-4941-88a2-ae22195a67c2";
     let { userName, firstName, lastName, NIC, licenseNumber, address, mobileNumber, residenceNumber,image, password, userType } = req.body

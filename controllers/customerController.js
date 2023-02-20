@@ -3,7 +3,7 @@ import { addClaim, getClaimDetails, getAllClaimDetails, getAllVehicles } from ".
 export const addClaimAction = (req,res) =>{
     let { vehicleId, description, numberPlateImage, images, currentStatus, dateTime, location } = req.body
     const userId = req.user.user_id;
-    // const userId = '14b81f3a-2cc2-40be-a7a1-6522bcfe165b';
+    // const userId = '65007509-5199-44a1-aaee-541953825bf8';
     addClaim(userId, vehicleId, description, numberPlateImage, images, currentStatus, dateTime, location)
         .then((result)=>{
             res.status(200);
